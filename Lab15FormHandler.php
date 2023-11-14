@@ -27,14 +27,14 @@ $curl = curl_init();
 
 // STEP 2: Set the values of the parameters to pass to the model ----
   // The default values are provided for demonstration purposes
-$arg_pregnant = isset($_POST['arg_pregnant']) ? $_POST['arg_pregnant'] : 1;
-  $arg_glucose = isset($_POST['arg_glucose']) ? $_POST['arg_glucose'] : 85;
-  $arg_pressure = isset($_POST['arg_pressure']) ? $_POST['arg_pressure'] : 66;
-  $arg_triceps = isset($_POST['arg_triceps']) ? $_POST['arg_triceps'] : 29;
-  $arg_insulin = isset($_POST['arg_insulin']) ? $_POST['arg_insulin'] : 0;
-  $arg_mass = isset($_POST['arg_mass']) ? $_POST['arg_mass'] : 26.6;
-  $arg_pedigree = isset($_POST['arg_pedigree']) ? $_POST['arg_pedigree'] : 0.351;
-  $arg_age = isset($_POST['arg_age']) ? $_POST['arg_age'] : 31;
+$arg_pregnant = isset($_GET['arg_pregnant']) ? $_GET['arg_pregnant'] : 1;
+  $arg_glucose = isset($_GET['arg_glucose']) ? $_GET['arg_glucose'] : 85;
+  $arg_pressure = isset($_GET['arg_pressure']) ? $_GET['arg_pressure'] : 66;
+  $arg_triceps = isset($_GET['arg_triceps']) ? $_GET['arg_triceps'] : 29;
+  $arg_insulin = isset($_GET['arg_insulin']) ? $_GET['arg_insulin'] : 0;
+  $arg_mass = isset($_GET['arg_mass']) ? $_GET['arg_mass'] : 26.6;
+  $arg_pedigree = isset($_GET['arg_pedigree']) ? $_GET['arg_pedigree'] : 0.351;
+  $arg_age = isset($_GET['arg_age']) ? $_GET['arg_age'] : 31;
   
   $params = array(
     'arg_pregnant' => $arg_pregnant,
