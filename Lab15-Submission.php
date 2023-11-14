@@ -37,6 +37,7 @@
         <input type="text" name="arg_age" ><br>
 
         <button type="submit">Predict Diabetes</button>
+        
 
     </form>
 </body>
