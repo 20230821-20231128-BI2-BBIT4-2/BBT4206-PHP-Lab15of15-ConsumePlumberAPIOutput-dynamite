@@ -1,109 +1,41 @@
-<?php
-# *****************************************************************************
-# Lab 14: Consume data from the Plumber API Output (using PHP) ----
-#
-# Course Code: BBT4206
-# Course Name: Business Intelligence II
-# Semester Duration: 21st August 2023 to 28th November 2023
-#
-# Lecturer: Allan Omondi
-# Contact: aomondi [at] strathmore.edu
-#
-# Note: The lecture contains both theory and practice. This file forms part of
-#       the practice. It has required lab work submissions that are graded for
-#       coursework marks.
-#
-# License: GNU GPL-3.0-or-later
-# See LICENSE file for licensing information.
-# *****************************************************************************
+<!DOCTYPE html>
+<html lang="en">
 
-// Full documentation of the client URL (cURL) library: https://www.php.net/manual/en/book.curl.php
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction Form</title>
+</head>
 
-// STEP 1: Set the API endpoint URL
-$apiUrl = 'http://127.0.0.1:5022/diabetes';
+<body>
+    <h2>Diabetes Prediction Form</h2>
+    <form method="get" action="Lab15FormHandler.php">
+        <label for="arg_pregnant">Pregnancies:</label>
+        <input type="text" name="arg_pregnant" value="<?php echo $arg_pregnant; ?>"><br>
 
-// Initiate a new cURL session/resource
-$curl = curl_init();
+        <label for="arg_glucose">Glucose:</label>
+        <input type="text" name="arg_glucose" value="<?php echo $arg_glucose; ?>"><br>
 
-// STEP 2: Set the values of the parameters to pass to the model ----
-/*
-// The prediction should be "positive" for diabetes
-$arg_pregnant = 1;
-$arg_glucose = 148;
-$arg_pressure = 72;
-$arg_triceps = 35;
-$arg_insulin = 0;
-$arg_mass = 33.6;
-$arg_pedigree = 0.627;
-$arg_age = 50;
-*/ 
+        <label for="arg_pressure">Blood Pressure:</label>
+        <input type="text" name="arg_pressure" value="<?php echo $arg_pressure; ?>"><br>
 
-// The prediction should be "negative" for diabetes
-$arg_pregnant = 1;
-$arg_glucose = 85;
-$arg_pressure = 66;
-$arg_triceps = 29;
-$arg_insulin = 0;
-$arg_mass = 26.6;
-$arg_pedigree = 0.351;
-$arg_age = 31;
+        <label for="arg_triceps">Triceps Thickness:</label>
+        <input type="text" name="arg_triceps" value="<?php echo $arg_triceps; ?>"><br>
 
-$params = array('arg_pregnant' => $arg_pregnant, 'arg_glucose' => $arg_glucose,
-                'arg_pressure' => $arg_pressure, 'arg_triceps' => $arg_triceps,
-                'arg_insulin' => $arg_insulin, 'arg_mass' => $arg_mass,
-                'arg_pedigree' => $arg_pedigree, 'arg_age' => $arg_age);
+        <label for="arg_insulin">Insulin Level:</label>
+        <input type="text" name="arg_insulin" value="<?php echo $arg_insulin; ?>"><br>
 
-// STEP 3: Set the cURL options
-// CURLOPT_RETURNTRANSFER: true to return the transfer as a string of the
-// return value of curl_exec() instead of outputting it directly.
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-$apiUrl = $apiUrl . '?' . http_build_query($params);
-curl_setopt($curl, CURLOPT_URL, $apiUrl);
+        <label for="arg_mass">Body Mass Index:</label>
+        <input type="text" name="arg_mass" value="<?php echo $arg_mass; ?>"><br>
 
-// For testing:
-echo "The generated URL sent to the API is:<br>".$apiUrl."<br><br>";
+        <label for="arg_pedigree">Diabetes Pedigree Function:</label>
+        <input type="text" name="arg_pedigree" value="<?php echo $arg_pedigree; ?>"><br>
 
-// Make a GET request
-$response = curl_exec($curl);
+        <label for="arg_age">Age:</label>
+        <input type="text" name="arg_age" value="<?php echo $arg_age; ?>"><br>
 
-// Check for cURL errors
-if (curl_errno($curl)) {
-    $error = curl_error($curl);
-    // Handle the error appropriately
-    die("cURL Error: $error");
-}
+        <input type="submit" value="Submit">
+    </form>
+</body>
 
-// Close cURL session/resource
-curl_close($curl);
-
-// Process the response
-// echo "<br>The predicted output in JSON format is:<br>" . var_dump($response) . "<br><br>";
-
-// Decode the JSON into normal text
-$data = json_decode($response, true);
-
-// echo "<br>The predicted output in decoded JSON format is:<br>" . var_dump($data) . "<br><br>";
-
-// Check if the response was successful
-if (isset($data['0'])) {
-    // API request was successful
-    // Access the data returned by the API
-	echo "The predicted diabetes status is:<br>";
-	
-    // Process the data
-	foreach($data as $repository) {
-		echo $repository['0'],$repository['1'],$repository['2'],"<br>";
-	}
-} else {
-    // API request failed or returned an error
-    // Handle the error appropriately
-    echo "API Error: " . $data['message'];
-}
-
-// REQUIRED LAB WORK SUBMISSION:
-/*
-Create a form in the web user interface to post the parameter values
-(e.g., $arg_pregnant, $arg_glucose, etc.) instead of setting them manually
-in Line 22-49.
-*/
-?>
+</html>
