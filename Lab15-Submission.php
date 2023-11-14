@@ -10,6 +10,7 @@
 <body>
     <h2>Diabetes Prediction Form</h2>
     <form method="get" action="Lab15FormHandler.php">
+
         
         <label for="arg_pregnant">Pregnancies:</label>
         <input type="text" name="arg_pregnant" ><br>
@@ -36,6 +37,7 @@
         <input type="text" name="arg_age" ><br>
 
         <button type="submit">Predict Diabetes</button>
+
     </form>
 </body>
 
